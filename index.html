@@ -1,0 +1,55 @@
+
+<!doctype html><!-- isme bahot sara samjh ni aya to copy kar liya as it is internet se-->
+<html>
+  <head>
+    <title>mera chat app</title>
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+    <style>
+    .text{
+      position: relative;
+      width: 300%;
+    }
+    .arrow{
+      position: relative;
+      top:560px;
+      left:200px;
+      width: 200px;
+    }
+
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+    </style>
+  </head>
+  <body>
+    <div >
+    <img class ="arrow" src="https://img.clipartfest.com/dcd874834b67385c6cc132c14730f20c_arrow-pointing-down-clip-art-clipart-arrows-pointing-down_300-457.png" alt="" />
+    <h4 class = "text" >write here</h4>
+</div>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  $(function () {
+    var socket = io();
+    $('form').submit(function(){
+      socket.emit('chat message', $('#m').val());
+      $('#m').val('');
+      return false;
+    });
+  });
+</script>
+<script>
+  var socket = io();
+</script>
+
+  </body>
+</html>
